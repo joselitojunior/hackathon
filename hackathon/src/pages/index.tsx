@@ -5,7 +5,6 @@ export default function Home() {
 	return (
 		<div className={styles['page']}>
 			<NavbarAndFooter>
-				Oi
 			</NavbarAndFooter>
 		</div>
 	);
