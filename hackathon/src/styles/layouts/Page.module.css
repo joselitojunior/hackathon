@@ -1,0 +1,10 @@
+.page {
+    padding: 0px 5rem;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-children {
+    min-height: 100vh;
+}
