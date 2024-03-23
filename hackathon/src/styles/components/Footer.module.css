@@ -1,0 +1,34 @@
+.footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 2rem;
+}
+
+.copyright {
+    opacity: 50%;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.social-medias {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.social-medias img {
+    height: 2rem;
+}
+
+.terms {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
+.terms button {
+    font-size: 1.2rem;
+    font-weight: 400;
+}

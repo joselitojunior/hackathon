@@ -1,0 +1,18 @@
+.main {
+	padding: 4.5rem 0px;
+}
+
+.title {
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.title span {
+	font-size: inherit;
+	font-weight: inherit;
+	color: var(--main);
+}
+
+.filter {
+	
+}
