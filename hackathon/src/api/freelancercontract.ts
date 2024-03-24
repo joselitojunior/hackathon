@@ -7,7 +7,7 @@ export async function completeProjectAndPay(): Promise<void> {
     // console.log(ethers)
     console.log("https://sepolia-rpc.scroll.io/")
     try {
-        const provider = new ethers.JsonRpcProvider("https://sepolia-rpc.scroll.io/" as string);
+        const provider = new ethers.providers.JsonRpcProvider("https://sepolia-rpc.scroll.io/" as string);
 
         const wallet = new ethers.Wallet("bfc73aa80de8595fdb36d16ebed11b35452ac0845e321e25af13ea52b108b956")
         const signer = wallet.connect(provider);
