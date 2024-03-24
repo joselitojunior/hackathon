@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getUser } from '@/utils/utils';
 import { useRouter } from 'next/router';
-import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWallet, darkTheme } from '@thirdweb-dev/react';
 
 export default function Navbar() {
     const { page, setPage } = navbarState();
@@ -67,7 +67,7 @@ export default function Navbar() {
             <div className={styles['last-div']}>
                 {user ?
                     <>
-                        <ConnectWallet className={styles['wallet']} theme={'dark'} switchToActiveChain={true} modalSize={'wide'}/>
+                        <ConnectWallet className={styles['wallet']} style={{ height: '2rem', marginRight: '2rem' }} switchToActiveChain={true} modalSize={'wide'} />
                         <button className={styles['profile-button']}><img src="/icons/profile-photo-placeholder.png" alt="Profile photo placeholder" /></button>
                     </>
                     :
