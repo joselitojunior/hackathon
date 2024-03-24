@@ -1,4 +1,4 @@
-export const ABI = [
+const ABI = [
     {
         "_format": "hh-sol-artifact-1",
         "contractName": "FreelanceContract",
@@ -129,3 +129,5 @@ export const ABI = [
         "deployedLinkReferences": {}
     }
 ]
+
+export default ABI
