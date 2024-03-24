@@ -5,7 +5,9 @@ Este projeto foi criado com NextJS / App Router
 ## Description and informations
 
 *GITHUB CONTRACT*: https://github.com/Augtt/ETHSamba_solidity_contract
+
 *CONTRACT_ADDRESS*: 0xD881421c172409b048cb22b6904e22B42b204967
+
 *CONTRACT SCROLL_ETHERSCAN*: https://sepolia.scrollscan.com/address/0xd881421c172409b048cb22b6904e22b42b204967
 
 ## STELLE
