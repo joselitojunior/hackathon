@@ -1,4 +1,5 @@
 import styles from "@/styles/pages/Home.module.css";
+import Link from "next/link";
 
 export default function work() {
 	return (
@@ -18,7 +19,7 @@ export default function work() {
 						Duration
 						<div className={styles['polygon']}></div>
 					</div>
-					<button className={styles['find-button']}>Find Project <img src="/icons/arrow.png" alt="Arrow icon" /></button>
+					<Link href={'/find'}><button className={styles['find-button']}>Find Project<img src="/icons/arrow.png" alt="Arrow icon" /></button></Link>
 				</div>
 			</div>
 			<img className={styles['illustration']} src="/illustrations/find-project.png" alt="Illustration" />

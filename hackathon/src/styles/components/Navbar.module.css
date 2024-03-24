@@ -1,9 +1,22 @@
 .navbar {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding: 1.5rem 0px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.319);
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.3);
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
+}
+
+.middle-div {
+    display: flex;
+    justify-content: center;
+}
+
+
+.last-div {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .logo-button {
@@ -71,4 +84,14 @@
 
 .selected-button {
     color: var(--main);
+}
+
+.profile-button {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.profile-button>img {
+    width: inherit;
+    height: inherit;
 }

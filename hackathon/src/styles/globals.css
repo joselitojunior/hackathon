@@ -6,6 +6,7 @@
     --green: #55A630;
     --gray: #333333;
     --gray-hover: #2f2f2f;
+    --yellow: #FDD836;
     --main: var(--blue);
     --secondary: var(--green);
     font-size: 10px;
@@ -34,6 +35,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 select,
 input {
     outline: none;
@@ -44,4 +49,5 @@ button {
     background: none;
     border: none;
     cursor: pointer;
+    outline: none;
 }
