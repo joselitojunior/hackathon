@@ -1,6 +1,6 @@
 import styles from '@/styles/components/FreelancerCard.module.css';
 import { useEffect, useRef, useState } from 'react';
-import { realizaContrato } from '@/api/freelancercontract.tsx'
+
 type CardProps = {
     name: string,
     profession: string,
