@@ -56,8 +56,12 @@
     color: var(--green);
 }
 
-.hire-button,
-.status-button {
+.decision-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.accept-button {
     background-color: var(--green);
     padding: 0.5rem 2rem;
     border-radius: 0.5rem;
@@ -65,9 +69,23 @@
     font-weight: 400;
 }
 
-.decision-buttons {
-    display: flex;
-    gap: 1rem;
+.decline-button {
+    background-color: var(--red);
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.chat {
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-decoration: underline;
+    opacity: 50%;
+}
+
+.chat:hover {
+    opacity: 100%;
 }
 
 .show-more {
