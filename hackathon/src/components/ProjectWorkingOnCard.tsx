@@ -3,6 +3,7 @@ import styles from '@/styles/components/ProjectCard.module.css';
 import { capitalize, getUser } from '@/utils/utils';
 import { stat } from 'fs';
 import { useEffect, useRef, useState } from 'react';
+import { completeProjectAndPay } from '@/api/freelancercontract';
 
 type CardProps = {
     title: string,
@@ -58,6 +59,7 @@ export default function Card({ title, proposals, description, price, status = 'p
 
     function finishAll() {
         setVisibility(true);
+        setFunc(completeProjectAndPay);
     }
 
     function validate() {
@@ -78,6 +80,7 @@ export default function Card({ title, proposals, description, price, status = 'p
                 <div className={styles['decision-buttons']}>
                     {status === 'finish' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }} onClick={finish}>Finish</button>}
                     {status === 'pending' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--background)' }}>Pending</button>}
+
                     {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }} onClick={finishAll}>Finish</button>}
                     {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--red)' }} onClick={validate}>Validate</button>}
                 </div>
