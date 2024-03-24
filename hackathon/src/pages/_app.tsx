@@ -1,8 +1,10 @@
 import ConfirmModal from "@/components/ConfirmModal";
 import "@/styles/globals.css";
 import { getUser } from "@/utils/utils";
+import { ThirdwebProvider, en, metamaskWallet } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
+import {ScrollSepoliaTestnet} from '@thirdweb-dev/chains';
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [user, setUser] = useState<any>(undefined);
@@ -27,8 +29,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	if (user !== undefined) {
 		return <>
-			<Component {...pageProps} />
-			<ConfirmModal/>
+			<ThirdwebProvider activeChain={ScrollSepoliaTestnet} clientId={'764a40de5b197a05a6903aea9cef9f3e'} locale={en()} supportedWallets={
+				[
+					metamaskWallet(),
+				]
+			}>
+				<Component {...pageProps} />
+				<ConfirmModal />
+			</ThirdwebProvider>
 		</>;
 	}
 }

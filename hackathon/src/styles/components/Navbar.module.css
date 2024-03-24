@@ -95,3 +95,8 @@
     width: inherit;
     height: inherit;
 }
+
+.wallet {
+    width: 10px;
+    height: 10px;
+}
