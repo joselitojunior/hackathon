@@ -3,7 +3,7 @@ import { ABI } from '@/utils/ABI.js'
 
 const contractAddress = `${process.env.CONTRACT_ADDRESS}`;
 
-export default function completeProjectAndPay(): Promise<void> {
+export async function completeProjectAndPay(): Promise<void> {
     console.log("Acessando contrato")
     try {
         const provider = new ethers.providers.JsonRpcProvider(
