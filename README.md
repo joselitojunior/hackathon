@@ -46,9 +46,9 @@ Instale as dependências
 npm install
 ```
 
-Copie o conteúdo do arquivo .env.example e crie seu arquivo .env fornecendo as variáveis ​​necessárias.
+Copy the contents of the .env.example file and create your .env file providing the necessary variables.
 
-Inicie o projeto
+Start the project.
 
 ```
 npm run dev
