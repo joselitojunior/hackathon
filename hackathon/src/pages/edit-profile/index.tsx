@@ -4,24 +4,25 @@ import styles from '@/styles/pages/CreateProject.module.css';
 import { useState } from "react";
 
 export default function MyProjects() {
-    const [name, setName] = useState('');
+    const [career, setCareer] = useState('');
+    const [price, setPrice] = useState<any>();
     const [description, setDescription] = useState('');
     const { setVisibility, setFunc } = confirmModalState();
 
-    function create() {
+    function edit() {
         setVisibility(true);
     }
 
     return (
         <Page>
             <main className={styles['main']}>
-                <h1 className={styles['title']}>Create a project</h1>
+                <h1 className={styles['title']}>Edit profile</h1>
                 <div className={styles['content']}>
                     <div>
-                        <p>Type, skills required and budget range</p>
+                        <p>Category, skills and type of professional</p>
                         <div className={styles['filters']}>
                             <div className={styles['select']} id="category">
-                                Type
+                                Category
                                 <div className={styles['polygon']}></div>
                             </div>
                             <div className={styles['select']} id="category">
@@ -29,27 +30,37 @@ export default function MyProjects() {
                                 <div className={styles['polygon']}></div>
                             </div>
                             <div className={styles['select']} id="category">
-                                Budget
+                                Type
                                 <div className={styles['polygon']}></div>
                             </div>
                         </div>
                     </div>
 
-                    <div>
-                        <p>Project title</p>
-                        <div className={styles['input-div']}>
-                            <div className={styles['input-div-placeholder']}>
-                                <input className={styles['input-bar']} value={name} onChange={(e) => setName(e.currentTarget.value)} type="text" />
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                        <div>
+                            <p>Career</p>
+                            <div className={styles['input-div']}>
+                                <div className={styles['input-div-placeholder']}>
+                                    <input className={styles['input-bar']} value={career} onChange={(e) => setCareer(e.currentTarget.value)} type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Price per hour</p>
+                            <div className={styles['input-div']}>
+                                <div className={styles['input-div-placeholder']}>
+                                    <input className={styles['input-bar']} value={price} onChange={(e) => setPrice(e.currentTarget.value)} type="text" />
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p>Project description</p>
+                        <p>About you</p>
                         <textarea name="" id="" cols={30} rows={10}></textarea>
                     </div>
 
-                    <button className={styles['ok-button']} onClick={create}>Create project</button>
+                    <button className={styles['ok-button']} onClick={edit}>Edit profile</button>
                 </div>
             </main>
         </Page>

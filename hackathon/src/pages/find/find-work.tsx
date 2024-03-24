@@ -2,15 +2,28 @@ import Card from "@/components/ProjectCard";
 import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
 import styles from "@/styles/pages/Find.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectFilterModal from "@/components/ProjectFilterModal";
+import Page from "@/layouts/Page";
 
-export default function findHire() {
+export default function FindWork() {
     const [search, setSearch] = useState('');
     const [filterModalVisibility, setFilterModalVisibility] = useState(false);
 
+    const [data, setData] = useState<any>();
+
+    async function getData() {
+        const response = await fetch('/api/getProjects');
+        const data = await response.json()
+        setData(data);
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
     return (
-        <>
+        <Page>
             <main className={styles['main']}>
                 <div className={styles['header']}>
                     <h1 className={styles['title']}>Find Projects</h1>
@@ -25,21 +38,19 @@ export default function findHire() {
                 </div>
                 <div className={styles['content']}>
                     <ul className={styles['content-header']}>
-                        <li><p><span>6</span> results found</p></li>
+                        <li><p><span>{data?.length}</span> results found</p></li>
                         <li className={styles['search-bar-li']}><SearchBar search={search} setSearch={setSearch} /></li>
                     </ul>
                     <div className={styles['cards-div']}>
-                        <Card title="Image analysis received via Whatsapp" proposals={1} price={1150} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={18} price={390} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up anI need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp againd then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={14} price={130} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={4} price={1000} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set uI need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp againp and then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={4} price={680} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={0} price={550} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp again" />
-                        <Card title="Image analysis received via Whatsapp" proposals={3} price={450} description="I need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set upI need to analyze an image received by whatsapp and analyze the image according to the prompt I am going to set up and then return the result of the analysis via whatsapp again and then return the result of the analysis via whatsapp again" />
+                        {data?.filter((project: any) => project?.project.name.toLowerCase().includes(search.toLocaleLowerCase()) || project?.project.description.toLowerCase().includes(search.toLocaleLowerCase()) || (search == ''))?.map((project: any) => {
+                            return (
+                                <Card title={project.project.name} proposals={1} price={project.project.budget} description={project.project.description} />
+                            )
+                        })}
                     </div>
                 </div>
             </main>
             {filterModalVisibility && <ProjectFilterModal setFilterModalVisibility={setFilterModalVisibility} />}
-        </>
+        </Page>
     )
 }

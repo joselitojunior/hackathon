@@ -1,10 +1,11 @@
-import Page from "@/layouts/Page";
+import Page from "@/layouts/HomeLayout";
 import { useRouter } from "next/router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import styles from '@/styles/pages/Login.module.css';
 
 export default function LogIn() {
-    const usernameRef = useRef<any>(null);
-    const passwordRef = useRef<any>(null);
+    const [username, setUsername] = useState<any>('');
+    const [password, setPassword] = useState<any>('');
     const router = useRouter();
 
     function setCssVariables(user: any) {
@@ -32,9 +33,7 @@ export default function LogIn() {
     }
 
     async function logIn() {
-        if (passwordRef.current && usernameRef.current) {
-            const username = usernameRef.current.value;
-            const password = passwordRef.current.value;
+        if (password && username) {
             const user = await auth(username, password);
             if (user) {
                 setCssVariables(user);
@@ -45,13 +44,22 @@ export default function LogIn() {
     }
 
     return (
-        <div style={{ backgroundColor: 'var(--background)', height: '100vh' }}>
-            <p>Username</p>
-            <input ref={usernameRef} type="text" style={{ color: 'black' }} />
-            <p>Password</p>
-            <input ref={passwordRef} type="text" style={{ color: 'black' }} />
-            <br />
-            <button onClick={logIn}>Log In</button>
-        </div>
+        <Page>
+            <main className={styles['main']}>
+                <img src="/icons/gray-logo.png" alt="Logo" />
+                <h1>Create an account</h1>
+                <div className={styles['credentials']}>
+                    <div className={styles['search-bar-div']}>
+                        <input className={styles['search-bar']} value={username} onChange={(e) => setUsername(e.currentTarget.value)} type="text" />
+                        {username == '' && <p className={styles['placeholder']}>Username</p>}
+                    </div>
+                    <div className={styles['search-bar-div']}>
+                        <input className={styles['search-bar']} value={password} onChange={(e) => setPassword(e.currentTarget.value)} type="text" />
+                        {password == '' && <p className={styles['placeholder']}>Password</p>}
+                    </div>
+                </div>
+                <button className={styles['login-button']} onClick={logIn}>Login</button>
+            </main>
+        </Page>
     )
 }

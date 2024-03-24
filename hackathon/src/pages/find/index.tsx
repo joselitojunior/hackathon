@@ -1,38 +1,40 @@
 import Page from "@/layouts/Page";
 import { navbarState } from "@/stores/navbarStore";
-import findHire from "./find-hire";
-import findWork from "./find-work";
-import FilterModal from "@/components/FreelancerFilterModal";
 import { useEffect, useState } from "react";
 import { getUser } from "@/utils/utils";
+import FindHire from "./find-hire";
+import FindWork from "./find-work";
 
 export default function Find() {
     const { page } = navbarState();
     const [user, setUser] = useState<any>(undefined);
+    const [findPage, setFindPage] = useState('')
 
-    function renderPage() {
+    useEffect(() => {
         if (user) {
             if (user.type == 0) {
-                return findHire();
+                setFindPage('hire');
             } else if (user.type == 1) {
-                return findWork();
+                setFindPage('work');
             }
         } else {
             if (page == 0) {
-                return findHire();
+                setFindPage('hire');
             } else if (page == 1) {
-                return findWork();
+                setFindPage('work');
             }
         }
-    }
+    }, [user])
+
 
     useEffect(() => {
         setUser(getUser());
     }, [])
 
     return (
-        <Page>
-            {renderPage()}
-        </Page>
+        <>
+            {findPage == 'hire' && < FindHire />}
+            {findPage == 'work' && < FindWork />}
+        </>
     )
 }

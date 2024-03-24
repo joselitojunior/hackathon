@@ -69,11 +69,10 @@ export default function Navbar() {
                     :
                     <ul className={styles['auth-buttons']}>
                         <li><button className={`${styles['sign-up']}`}>Sign Up</button></li>
-                        <li><button className={`${styles['log-in']}`}>Log In</button></li>
+                        <li><Link href={'/login'}><button className={`${styles['log-in']}`}>Log In</button></Link></li>
                     </ul>
                 }
             </div>
-            {/* <SearchBar /> */}
         </nav>
     )
 }

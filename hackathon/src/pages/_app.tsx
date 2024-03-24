@@ -1,3 +1,4 @@
+import ConfirmModal from "@/components/ConfirmModal";
 import "@/styles/globals.css";
 import { getUser } from "@/utils/utils";
 import type { AppProps } from "next/app";
@@ -8,7 +9,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		const root = document.documentElement;
-		console.log('a')
 
 		if (user) {
 			if (user.type == 0) {
@@ -26,6 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, [])
 
 	if (user !== undefined) {
-		return <Component {...pageProps} />;
+		return <>
+			<Component {...pageProps} />
+			<ConfirmModal/>
+		</>;
 	}
 }

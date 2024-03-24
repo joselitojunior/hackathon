@@ -1,3 +1,4 @@
+import { confirmModalState } from '@/stores/confirmModalStore';
 import styles from '@/styles/components/ProjectOfferCard.module.css';
 import { useEffect, useRef, useState } from 'react';
 
@@ -13,6 +14,7 @@ export default function Card({ title, proposals, description, price }: CardProps
     const descriptionDivRef = useRef<any>();
     const [showMoreVisibility, setShowMoreVisibility] = useState(false);
     const [isShowingMore, setIsShowingMore] = useState(false);
+    const { setVisibility, setFunc } = confirmModalState();
 
     useEffect(() => {
         if (descriptionRef.current) {
@@ -47,6 +49,14 @@ export default function Card({ title, proposals, description, price }: CardProps
         setIsShowingMore(prev => !prev)
     }
 
+    function accept() {
+        setVisibility(true);
+    }
+
+    function decline() {
+        setVisibility(true);
+    }
+
     return (
         <div className={styles['card']}>
             <div className={styles['header']}>
@@ -60,8 +70,8 @@ export default function Card({ title, proposals, description, price }: CardProps
                 <p className={styles['price']}>{'Maria'} offers: ${price}</p>
                 <div className={styles['decision-buttons']}>
                     <button className={styles['chat']}>Chat</button>
-                    <button className={styles['accept-button']}>Accept</button>
-                    <button className={styles['decline-button']}>Decline</button>
+                    <button className={styles['accept-button']} onClick={accept}>Accept</button>
+                    <button className={styles['decline-button']} onClick={decline}>Decline</button>
                 </div>
             </div>
         </div>

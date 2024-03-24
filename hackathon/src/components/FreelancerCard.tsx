@@ -1,3 +1,4 @@
+import { confirmModalState } from '@/stores/confirmModalStore';
 import styles from '@/styles/components/FreelancerCard.module.css';
 import { useEffect, useRef, useState } from 'react';
 
@@ -16,6 +17,8 @@ export default function Card({ name, profession, stars, reviews, description, pr
     const [showMoreVisibility, setShowMoreVisibility] = useState(false);
     const descriptionDivRef = useRef<any>();
     const [isShowingMore, setIsShowingMore] = useState(false);
+    const { setVisibility, setFunc } = confirmModalState();
+
 
     useEffect(() => {
         if (descriptionRef.current) {
@@ -51,6 +54,14 @@ export default function Card({ name, profession, stars, reviews, description, pr
         setIsShowingMore(prev => !prev)
     }
 
+    function hire() {
+        setVisibility(true);
+    }
+
+    function decline() {
+        setVisibility(true);
+    }
+
     return (
         <div className={styles['card']}>
             <div className={styles['header']}>
@@ -81,8 +92,8 @@ export default function Card({ name, profession, stars, reviews, description, pr
                     {project && <p className={styles['project']}>Project: {project}</p>}
                 </div>
                 <div className={styles['decision-buttons']}>
-                    <button className={styles['hire-button']}>Hire</button>
-                    {project && <button className={styles['decline-button']}>Decline</button>}
+                    <button className={styles['hire-button']} onClick={hire}>Hire</button>
+                    {project && <button className={styles['decline-button']} onClick={decline}>Decline</button>}
                 </div>
             </div>
         </div>

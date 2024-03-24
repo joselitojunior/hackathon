@@ -1,3 +1,4 @@
+import { confirmModalState } from '@/stores/confirmModalStore';
 import styles from '@/styles/components/ProjectCard.module.css';
 import { capitalize, getUser } from '@/utils/utils';
 import { stat } from 'fs';
@@ -16,7 +17,7 @@ export default function Card({ title, proposals, description, price, status = 'p
     const descriptionDivRef = useRef<any>();
     const [showMoreVisibility, setShowMoreVisibility] = useState(false);
     const [isShowingMore, setIsShowingMore] = useState(false);
-    // const [userType, setUserType] = useState<any>(null);
+    const { setVisibility, setFunc } = confirmModalState();
 
     useEffect(() => {
         if (descriptionRef.current) {
@@ -51,12 +52,17 @@ export default function Card({ title, proposals, description, price, status = 'p
         setIsShowingMore(prev => !prev)
     }
 
-    // useEffect(() => {
-    //     const user = getUser();
-    //     if (user) {
-    //         setUserType(user.type);
-    //     }
-    // }, [])
+    function finish() {
+        setVisibility(true);
+    }
+
+    function finishAll() {
+        setVisibility(true);
+    }
+
+    function validate() {
+        setVisibility(true);
+    }
 
     return (
         <div className={styles['card']}>
@@ -70,10 +76,10 @@ export default function Card({ title, proposals, description, price, status = 'p
             <div className={styles['footer']}>
                 <p className={styles['price']}>Price: ${price}</p>
                 <div className={styles['decision-buttons']}>
-                    {status === 'finish' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }}>Finish</button>}
+                    {status === 'finish' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }} onClick={finish}>Finish</button>}
                     {status === 'pending' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--background)' }}>Pending</button>}
-                    {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }}>Finish</button>}
-                    {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--red)' }}>Validate</button>}
+                    {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--green)' }} onClick={finishAll}>Finish</button>}
+                    {status === 'decide' && <button className={styles['status-button']} style={{ backgroundColor: 'var(--red)' }} onClick={validate}>Validate</button>}
                 </div>
             </div>
         </div>

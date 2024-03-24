@@ -2,15 +2,25 @@ import Card from "@/components/FreelancerCard";
 import Filter from "@/components/Filter";
 import SearchBar from "@/components/SearchBar";
 import styles from "@/styles/pages/Find.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FreelancerFilterModal from "@/components/FreelancerFilterModal";
+import Page from "@/layouts/Page";
 
-export default function findHire() {
+export default function FindHire() {
     const [search, setSearch] = useState('');
     const [filterModalVisibility, setFilterModalVisibility] = useState(false);
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        async function getData() {
+            const response = await fetch('/api/getFreelancers');
+            setData(await response.json());
+        }
+        getData()
+    }, [])
 
     return (
-        <>
+        <Page>
             <main className={styles['main']}>
                 <div className={styles['header']}>
                     <h1 className={styles['title']}>Find Freelancers</h1>
@@ -25,21 +35,19 @@ export default function findHire() {
                 </div>
                 <div className={styles['content']}>
                     <ul className={styles['content-header']}>
-                        <li><p><span>6</span> results found</p></li>
+                        <li><p><span>{data?.length}</span> results found</p></li>
                         <li className={styles['search-bar-li']}><SearchBar search={search} setSearch={setSearch} /></li>
                     </ul>
                     <div className={styles['cards-div']}>
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstackEu soaskjasnmkdjsanfjskakjdflasu fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
-                        <Card name="Joselito Júnior" profession="Developer" price={30} reviews={82} stars={3} description="Eu sou fullstack" />
+                        {data?.filter((freelancer: any) => freelancer.user.name.toLowerCase().includes(search.toLocaleLowerCase()) || freelancer.profession.toLowerCase().includes(search.toLocaleLowerCase()) || (search == ''))?.map((freelancer: any) => {
+                            return (
+                                <Card name={freelancer.user.name} profession={freelancer.profession} price={freelancer.price_per_hour} reviews={82} stars={3} description={freelancer.description} />
+                            )
+                        })}
                     </div>
                 </div>
             </main>
             {filterModalVisibility && <FreelancerFilterModal setFilterModalVisibility={setFilterModalVisibility} />}
-        </>
+        </Page>
     )
 }
