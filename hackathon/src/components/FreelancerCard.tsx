@@ -8,9 +8,10 @@ type CardProps = {
     reviews: number,
     description?: string,
     price: number,
+    project?: string,
 }
 
-export default function Card({ name, profession, stars, reviews, description, price }: CardProps) {
+export default function Card({ name, profession, stars, reviews, description, price, project }: CardProps) {
     const descriptionRef = useRef<any>();
     const [showMoreVisibility, setShowMoreVisibility] = useState(false);
     const descriptionDivRef = useRef<any>();
@@ -30,7 +31,7 @@ export default function Card({ name, profession, stars, reviews, description, pr
         }
     }, [descriptionRef]);
 
-    
+
     useEffect(() => {
         if (isShowingMore && descriptionRef.current && descriptionDivRef.current) {
             const description = descriptionRef.current;
@@ -42,10 +43,10 @@ export default function Card({ name, profession, stars, reviews, description, pr
             const descriptionDiv = descriptionDivRef.current
             description.style.display = '-webkit-box';
             descriptionDiv.style.height = '9.733rem';
-            
+
         }
     }, [isShowingMore])
-    
+
     function handleClick() {
         setIsShowingMore(prev => !prev)
     }
@@ -75,8 +76,14 @@ export default function Card({ name, profession, stars, reviews, description, pr
                 {showMoreVisibility && <button className={styles['show-more']} onClick={handleClick}>Show more</button>}
             </div>
             <div className={styles['footer']}>
-                <p className={styles['price']}>Price per hour: ${price}</p>
-                <button className={styles['hire-button']}>Hire</button>
+                <div>
+                    <p className={styles['price']}>Price per hour: ${price}</p>
+                    {project && <p className={styles['project']}>Project: {project}</p>}
+                </div>
+                <div className={styles['decision-buttons']}>
+                    <button className={styles['hire-button']}>Hire</button>
+                    {project && <button className={styles['decline-button']}>Decline</button>}
+                </div>
             </div>
         </div>
     )

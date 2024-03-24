@@ -7,6 +7,18 @@ export default function LogIn() {
     const passwordRef = useRef<any>(null);
     const router = useRouter();
 
+    function setCssVariables(user: any) {
+        const root = document.documentElement;
+
+        if (user.type == 0) {
+            root.style.setProperty('--main', 'var(--blue)');
+            root.style.setProperty('--secondary', 'var(--green)');
+        } else if (user.type == 1) {
+            root.style.setProperty('--main', 'var(--green)');
+            root.style.setProperty('--secondary', 'var(--blue)');
+        }
+    }
+
     async function auth(username: string, password: string) {
         const response = await fetch('/api/logIn', {
             method: 'POST',
@@ -25,6 +37,7 @@ export default function LogIn() {
             const password = passwordRef.current.value;
             const user = await auth(username, password);
             if (user) {
+                setCssVariables(user);
                 localStorage.setItem('user', JSON.stringify(user));
                 router.push('/')
             }
