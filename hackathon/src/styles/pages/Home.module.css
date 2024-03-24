@@ -1,0 +1,100 @@
+.page {
+	background-color: var(--background);
+	min-height: 100vh;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.main {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 15rem;
+	z-index: 1;
+}
+
+.illustration {
+	height: 25rem;
+}
+
+.main-text {
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.main-text span {
+	font-size: inherit;
+	font-weight: inherit;
+	color: var(--main);
+}
+
+.find-button {
+	position: relative;
+	z-index: 0;
+	overflow: hidden;
+	color: var(--background);
+	background-color: var(--main);
+	font-size: 1.4rem;
+	padding: 1rem 2.25rem 1rem 3rem;
+	font-weight: 500;
+	min-width: fit-content;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	border-radius: 10px;
+	margin-top: 4rem;
+}
+
+.find-button img {
+	height: 1rem;
+	margin-left: auto;
+}
+
+.selects-div {
+	display: flex;
+	flex-direction: column;
+	width: 22rem;
+	gap: 1rem;
+	margin-top: 4rem;
+}
+
+.select {
+	min-width: fit-content;
+	padding: 1rem 2.25rem 1rem 3rem;
+	border-radius: 10px;
+	font-size: 1.4rem;
+	background-color: var(--gray);
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	cursor: pointer;
+}
+
+.polygon {
+	width: 0;
+	height: 0;
+	border-left: 0.4rem solid transparent;
+	border-right: 0.4rem solid transparent;
+	border-top: 0.6rem solid white;
+	margin-left: auto;
+}
+
+.blob {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 0;
+	pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.select:hover {
+		background-color: var(--gray-hover);
+	}
+}

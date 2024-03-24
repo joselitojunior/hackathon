@@ -1,0 +1,21 @@
+.filter {
+    display: flex;
+    align-items: center;
+    background-color: var(--gray);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    gap: 0.5rem;
+}
+
+.filter button {
+    height: 1.6rem;
+}
+
+.filter button>img {
+    height: inherit;
+}
+
+.filter>p {
+    font-size: 1.3rem;
+    font-weight: 400;
+}

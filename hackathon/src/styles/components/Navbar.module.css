@@ -1,22 +1,97 @@
 .navbar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1.5rem 0px;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.3);
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.middle-div {
     display: flex;
-    padding: 1rem 2rem;
+    justify-content: center;
+}
+
+
+.last-div {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .logo-button {
     display: flex;
     align-items: center;
-    cursor: pointer;
     margin-right: 4rem;
 }
 
 .logo {
-    height: 3rem;
+    height: 1.8rem;
     margin-right: 1rem;
 }
 
 .logo-text {
     color: white;
     font-weight: 500;
-    font-size: 3rem;
+    font-size: 1.8rem;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.button {
+    color: white;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.navbar-buttons {
+    gap: 2rem;
+}
+
+.auth-buttons {
+    gap: 2rem;
+    align-items: center;
+}
+
+.sign-up {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.sign-up:hover {
+    color: #F0F0F0;
+}
+
+.log-in {
+    color: var(--background);
+    font-size: 1.5rem;
+    font-weight: 400;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.6rem 1.6rem;
+}
+
+.log-in:hover {
+    background-color: #F0F0F0;
+}
+
+.selected-button {
+    color: var(--main);
+}
+
+.profile-button {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.profile-button>img {
+    width: inherit;
+    height: inherit;
 }
