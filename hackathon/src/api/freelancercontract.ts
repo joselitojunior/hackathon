@@ -20,7 +20,6 @@ export async function completeProjectAndPay(): Promise<void> {
 
         if (currentTime >= deadline) {
             const tx = await freelanceContract.completeProject();
-            console.log(tx);
             // await tx.wait();
             const compensationAmount = "0.5";
             const tx2 = freelanceContract.withdrawCompensation;
